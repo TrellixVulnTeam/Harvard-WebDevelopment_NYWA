@@ -1,4 +1,4 @@
-# (Harvard Web Development Course)[https://online-learning.harvard.edu/course/cs50s-web-programming-python-and-javascript]
+## [Harvard Web Development Course](https://online-learning.harvard.edu/course/cs50s-web-programming-python-and-javascript)
 
 ### CS50’s Web Programming with Python and JavaScript
 
