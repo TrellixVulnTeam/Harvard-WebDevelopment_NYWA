@@ -44,15 +44,18 @@ Python SQL ALchemy Syntax
 
 <<<SELECT>>>
 
-SQL: SELECT * FROM flights;
-Python: Flight.query.all()
 
-SQL: SELECT * FROM flights WHERE origin ="Paris"
-Python: Flights.query.fliter_by(origin="paris".all()
+Select all:
+	SQL: SELECT * FROM flights;
+	Python: Flight.query.all()
 
-SQL: SELECT * FROM flights WHERE origin ="paris" LIMIT 1
-Python: Flight.query.filter_by(orgin="Paris").first() 
-#just get the first thing instead of a list
+Selecting whole columm:
+	SQL: SELECT * FROM flights WHERE origin ="Paris"
+	Python: Flights.query.fliter_by(origin="paris".all()
+
+Selecting specific data:
+	SQL: SELECT * FROM flights WHERE origin ="paris" LIMIT 1
+	Python: Flight.query.filter_by(orgin="Paris").first()  #just get the first thing instead of a list
 
 Counting
 	Python: Flight.query.filter_by(orgin="Paris").count()
