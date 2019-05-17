@@ -1,0 +1,101 @@
+object-relational mapping 
+using Flask SQL Alchemy
+
+
+Using Python classes and syntax to substitute SQL Commands
+
+<<<CREATE TABLE>>>
+
+	class Flight(db.Model): #using objects to interact with database 
+	    __tablename__ = "flights" #name of the table
+	    id = db.Column(db.Integer, primary_key=True) 
+	    origin = db.Column(db.String, nullable=False) #origin,string that is not null
+	    destination = db.Column(db .String, nullable=False)
+	    duration = db.Column(db.Integer, nullable=False)
+
+	class Passenger(db.Model):
+	    __tablename__ = "passengers"
+	    id = db.Column(db.Integer, primary_key=True)
+	    name = db.Column(db.String, nullable=False)
+	    flight_id = db.Column(db.Integer, db.ForeignKey("flights.id"), nullable=False)#foreign key meaning referencing another table column
+
+	def main():
+    	db.create_all()
+
+	if __name__ == "__main__":
+	    with app.app_context(): #on command line interact with flask application
+	        main()
+
+using db.create_all() to create the table in SQL Syntax
+
+
+
+<<<INSERT INTO>>>
+
+SQL Syntax
+	INSERT INTO flights(origin,destination,duration)
+	VALUES('New York','Paris',540)
+
+Python SQL ALchemy Syntax
+	flight = Flight(origin="New York",destination = "Paris",duration = 540)
+
+	db.session.add(flight)
+
+
+<<<SELECT>>>
+
+SQL: SELECT * FROM flights;
+Python: Flight.query.all()
+
+SQL: SELECT * FROM flights WHERE origin ="Paris"
+Python: Flights.query.fliter_by(origin="paris".all()
+
+SQL: SELECT * FROM flights WHERE origin ="paris" LIMIT 1
+Python: Flight.query.filter_by(orgin="Paris").first() 
+#just get the first thing instead of a list
+
+Counting
+	Python: Flight.query.filter_by(orgin="Paris").count()
+
+Select by id:
+	Flight.query.filter_by(id="28").first()
+	Flight.query.get(28)
+
+Ordering data by specific colum(ascending):
+	Flight.query.order_by(Flight.origin).all()
+
+
+
+<<<UPDATE>>>
+
+Changing the duration flight id =6 to 200:
+	flight = Flight.query.get(6)
+	flight.duration = 200
+
+
+
+<<<DELETE>>>
+	flight = Flight.query.get(28)
+	db.session.delete(flight)
+
+<<<COMMIT>>>
+db.session.commit()
+
+
+<<<JOIN>>>
+	db.session.query(Flight,Passenger).filter(
+	Flight.id == Passenger.flight_id).all()
+
+
+
+
+relationship(simpler way instead of using join)
+
+	Connecting flight table and passenger table:
+
+	    passengers = db.relationship("Passenger", backref="flight", lazy=True)
+
+	    # Get all passengers.
+	    passengers = flight.passengers
+	    return render_template("flight.html", flight=flight, passengers=passengers)
+

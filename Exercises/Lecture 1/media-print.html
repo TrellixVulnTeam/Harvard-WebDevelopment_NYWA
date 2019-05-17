@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<style>
+		input[type=text]{
+			background-color: red;
+		}
+		<!-- create a media query that affects the class .screen-only and make it not visible -->
+		@media print{
+			.screen-only{
+				display:none;
+			}
+		}
+
+	</style>
+	<head>
+		<title> My WebPage </title>
+		<p class = "screen-only">This paragraph can't appear </p>
+	<body>Hi!</body>

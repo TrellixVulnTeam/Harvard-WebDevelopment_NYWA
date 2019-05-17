@@ -1,0 +1,132 @@
+SQL
+
+PostgreSQL(psql)
+
+
+Datatypes
+-serial ->automate sequential integer
+-varchar ->variable length string data type
+-enum
+-integer
+-INTEGER REFERENCES ->enforce the relationship
+
+
+Constraints for data:
+-NOT NULL
+-UNIQUE
+-PRIMARY KEY #contain unique value,cannot					have null values
+-DEFAULT
+-CHECK #more or less than x
+
+create row = DATA TYPE + Constraints
+
+
+Queries:
+
+-CREATE TABLE
+
+e.g create table to store flight information
+CREATE TABLE flights(
+	id SERIAL PRIMARY KEY,
+	origin VARCHAR NOT NULL, #origin col cannot be empty
+	destination VARCHAR NOT NULL,
+	duration INTEGER NOT NULL,
+	)
+
+-INSERT INTO
+->adds information into the table
+e.g
+INSERT INTO flights
+	(orgin,destination,duration)
+	VALUES ('New York', 'London' , 415)
+
+
+-SELECT 
+->shows the data
+>SELECT * #select everything 
+>SELECT origin,destination FROM flights #shows only the origin and destination of flight
+>SELECT * FROM flights WHERE id=3
+>SELECT COUNT #counts no of rows from database
+>SELECT * FROM flights WHERE origin LIKE "%a%";  #% as placeholder. In this case it is searching for origins that have a in it.
+
+
+-UPDATE
+->modify data in the database.using the UPDATE query, you can set new values
+e.g
+UPDATE flights
+	SET duration = 430  
+	WHERE origin = 'New York'
+	AND destination = 'London'
+
+
+-DELETE
+e.g DELETE FROM countries
+	WHERE origin ='New York'
+
+-JOIN
+->joining 2 tables to form relational database
+e.g 
+//SELECT origin,destination,name FROM flights FROM flights JOIN passengers ON
+//passenger.flight_id = flights.id;
+
+>LEFT JOIN 
+>RIGHT JOIN
+
+
+-CREATE INDEX
+
+
+Functions:
+just specify which row/column u wantc
+-AVG()
+-MIN()
+-MAX()
+-SUM()
+
+
+
+Relational database
+->relating different table 
+
+1. Create TABLE
+	e.g CREATE TABLE passengers(
+			id SERIAL PRIMARY KEY
+			name VARCHAR NOT NULL
+			flight_id INTEGER REFERENCES flight) #flight id is the 				relation between table
+
+2. INSERT INTO
+
+3. JOIN
+	e.g 
+	//SELECT origin,destination,name FROM flights FROM flights JOIN passengers ON
+	//passenger.flight_id = flights.id;
+
+
+
+Nested Queries -> to get more specific query
+//SELECT * FROM flights WHERE id IN (SELECT flights_id from passengers GROUP BY flight_id HAVING COUNT(*) > 1)
+
+
+SQL Injection
+e.g username and password
+	SELECT * FROM users
+		WHERE (username = username)
+		AND (password = password
+
+	Hacking into database with arbitrary commands(SQL Injection)
+	SELECT * FROM users
+	WHERE (username = 'hacker')
+	AND (password = '1' OR '1' = '1')
+
+
+
+Race Condition
+->running queries simultaneously that exploits the data base
+solution: 
+starting a transactions to lock in the bank account
+SQL Transactions:
+-BEGIN 
+-COMMIT
+
+SQL Alchemy
+-> library that allows python to run SQL Queries
