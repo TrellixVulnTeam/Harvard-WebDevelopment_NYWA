@@ -6,7 +6,7 @@ PostgreSQL(psql)
 Datatypes
 -serial ->automate sequential integer
 -varchar ->variable length string data type
--enum
+-Char ->stores character data in a fixed-length field of string, single-byte or multibyte letters, numbers, and other characters
 -integer
 -INTEGER REFERENCES ->enforce the relationship
 
@@ -14,7 +14,7 @@ Datatypes
 Constraints for data:
 -NOT NULL
 -UNIQUE
--PRIMARY KEY #contain unique value,cannot					have null values
+-PRIMARY KEY #contain unique value,cannot have null values.
 -DEFAULT
 -CHECK #more or less than x
 

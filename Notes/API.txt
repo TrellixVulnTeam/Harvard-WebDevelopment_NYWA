@@ -1,0 +1,50 @@
+API
+
+JSON(JavaScript Oriented Notation)
+
+- to pass data from one part of the application to another part of the application
+- Easy for both computer to render and humans to read
+- using URL will extract the information from the nested JSON structure
+
+key-value pair
+	e.g
+	{
+		"origin":"tokyo"
+		"destination":"shanghai"
+		"duration":185,
+	}
+
+
+Nested JSON
+	
+
+HTTP Methods - correspond to the type of action we want for the API
+
+-GET:retrieve resource
+-POST:create a new resource
+-PUT:replace a resource 
+-PATCH:update a resource
+-DELETE:delete a resource
+
+HTTP Status Code
+200 - OK
+201 - Created
+400 - Bad Request
+403 - Forbidden
+404 - Not found
+
+request python library
+
+	e.g
+	import requests
+
+	def main():
+	    res = requests.get("https://www.google.com/")
+	    print(res.text)
+
+	if __name__ == "__main__":
+	    main()
+
+
+Using API
+request.get(url)

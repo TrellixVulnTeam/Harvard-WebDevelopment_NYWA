@@ -1,29 +1,24 @@
-{% extends "layout.html" %}
+<link rel="stylesheet" href="/static/style.css" type="text/css">
+&#123;% block body %&#125;
 
-{% block title %}
-    Flights
-{% endblock %}
 
-{% block body %}
-    <h1>Book a Flight</h1>
+<form action="/login" method="POST">
+<div class="login">
+<div class="login-screen">
+<div class="app-title">
+<h1>Login</h1>
+</div>
+<div class="login-form">
+<div class="control-group">
+                <input type="text" class="login-field" value="" placeholder="username" name="username">
+<label class="login-field-icon fui-user" for="login-name"></label></div>
+<div class="control-group">
+                <input type="password" class="login-field" value="" placeholder="password" name="password">
+<label class="login-field-icon fui-lock" for="login-pass"></label></div>
+<input type="submit" value="Log in" class="btn btn-primary btn-large btn-block">
 
-    <form action="{{ url_for('book') }}" method="post">
-
-        <div class="form-group">
-            <select class="form-control" name="flight_id">
-                {% for flight in flights %}
-                    <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" name="name" placeholder="Passenger Name">
-        </div>
-
-        <div class="form-group">
-            <button class="btn btn-primary">Book Flight</button>
-        </div>
-
-    </form>
-{% endblock %}
+</div>
+</div>
+</div>
+</form>
+&#123;% endblock %&#125;

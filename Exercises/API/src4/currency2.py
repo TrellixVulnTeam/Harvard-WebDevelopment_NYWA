@@ -13,3 +13,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+#f-strings are string literals that have an f at the beginning and curly braces containing expressions that will be replaced with their values. 

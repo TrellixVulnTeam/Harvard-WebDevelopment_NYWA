@@ -62,7 +62,7 @@ def flight_api(flight_id):
     # Make sure flight exists.
     flight = Flight.query.get(flight_id)
     if flight is None:
-        return jsonify({"error": "Invalid flight_id"}), 422
+        return jsonify({"error": "Invalid flight_id"}), 422 #convert python diction to JSON
 
     # Get all passengers.
     passengers = flight.passengers
