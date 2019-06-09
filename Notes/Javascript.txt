@@ -1,0 +1,133 @@
+Javascript version ES6 (look at the console of chrome)
+-to make content more dynamic
+
+inside html script tag
+e.g
+	<script>
+		alert('Hello, world!');
+	</script>
+
+
+javascript function
+e.g
+ function hello() {
+ 	alert('Hello!');
+ }
+
+ <button onclick="hello()">Click Here!</button>
+
+template literal Javascript(similar to f print in python)
+-tilda and ${}
+e.g alert(`Counter is at ${counter}!`); 
+
+ Events(for eventListener)
+ - onclick
+ - onmouseover
+ - onkeydown
+ - onkeyup
+ - onload
+ - onblur (lose focus)
+
+
+
+
+Variables:
+- const ->to ensure the value is not going to change
+- let ->exist only in the block(curly braces{})
+- var ->exist globally
+
+
+
+
+Arrow Functions(more succint way to write function)
+- substitute the word function for =>
+
+<arrow function without argument>
+() => {
+	alert('Hello!');
+}
+
+<with parameter x>
+ x => x*2
+
+
+
+
+
+<<<Common javascript Usage>>>
+datatset ->gives access to all of data attribute of html element
+
+document -> refers to the webpage currently displayed
+
+innerHTML -> content inside the tags e.g ('h1'). Able to change the content inside the tags
+
+.forEach(function(button) -> run a function for each element inside the array
+	e.g
+	document.querySelectorAll('.color-change').forEach(function(button) {
+	                button.onclick = function()
+
+
+querySelector -> function that searches through webpage for css selectors
+- document.querySelector('tag')
+- document.querySelector('#id')
+- document.querySelector('.class')
+
+	e.g document.querySelector('h1').innerHTML ='goodbye'
+
+querySelectorAll
+- return an array of all the things it matched for.
+
+
+
+addEventListener(name of event,function)
+-DOMContentLoaded -> document finish loading in webbrowser
+
+	e.g
+	document.addEventListener('DOMContentLoaded', function() {
+	                document.querySelector('button').onclick = count;#setting callback function 'count' for onclick
+	            });
+
+
+setInterval(function,milliseconds)
+
+
+
+
+
+Local Storage(to store information on local computer)
+-localStorage.getItem()
+-localStorage.setItem()
+
+e.g
+if (!localStorage.getItem('counter'))
+                localStorage.setItem('counter',0)
+
+
+
+
+API (static-> index.js) #where all the logic happens
+Using JavaScript to parse JSON response
+
+- Run the function when content is loaded:
+	request.onload
+
+	e.g
+	request.onload = () => {
+                    const response = request.responseText;
+                    document.querySelector('#body').innerHTML = response;
+                }; 
+
+- Extract JSON data from request return(access using key and value:
+	const data = JSON.parse(request.responseText);
+
+- Send request to route, and stop the form from loading after submitting the form:
+    request.send(data);
+    return false;
+
+
+
+Socket.IO (javascript lib)
+- allows for real-time(fullduplex) communication between server and client
+
+<<<functions>>>
+- emit()
