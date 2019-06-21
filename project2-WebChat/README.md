@@ -1,6 +1,6 @@
 # Project 2
 
-A Chatroom created with Socket-IO
+A Chatroom created with Socket-IO and flask.
 
 ## Try it here : https://frozen-atoll-84090.herokuapp.com/login
 
@@ -18,5 +18,5 @@ A Chatroom created with Socket-IO
 ![](https://i.imgur.com/zUNoxv5.png)
 
 
-##Chat
+## Chat
 ![](https://i.imgur.com/ieLX7QH.png)
