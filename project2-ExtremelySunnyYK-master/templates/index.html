@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Flack</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/simple-sidebar.css" rel="stylesheet">
+
+  <!-- Font Icon -->
+<link rel="stylesheet" href="/static/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="/static/css/style.css">
+
+
+    <style>
+        #channelbutton:hover {
+  background-color: #4292dc;
+}
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <a class="navbar-brand" href="#">
+                  <img src="/static/images/logo_transparent.png" width="46" height="46" class="d-inline-block align-top" alt="">
+                  Flack</a>
+                  <div class="navbar-collapse collapse" id="navbarNavDropdown">
+
+                  {% if session['logged_in'] == True %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">{{ session['user'] }}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    </ul>
+                {% endif %}
+              </ul>
+                  </div>
+    </nav>
+
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading" id="channelbutton">Create a Channel</div>
+
+
+     <div class="sidebar-heading">Channel List</div>
+      <div class="list-group list-group-flush">
+          {% for channel in channelsCreated %}
+        <a href="{{ url_for('chat', channel_link = channel) }}" class="list-group-item list-group-item-action bg-light">{{ channel }}</a>
+          {% endfor %}
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      </nav>
+
+            {% block body %}{% endblock %}
+
+    </div>
+    <!-- /#page-content-wrapper -->
+
+    <!-- The popup to create new channel -->
+<div id="myModal" class="modal">
+
+  <form class="modal-content" method="post" action="/channels">
+      <span class="close">&times;</span>
+      <h1>Create your Channel:</h1>
+      <input type="text" name="channel" placeholder="Your Channel">
+      <input type="submit" value="Submit">
+  </form>
+
+</div>
+  </div>
+
+  <!-- /#wrapper -->
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="/static/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/js/main.js"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
+<!--Create Channel Script-->
+    <script>
+
+        var btn = document.getElementById('channelbutton');
+        var popup = document.getElementById('myModal');
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+
+        btn.onclick = function() {
+            popup.style.display = "block";
+}
+
+        span.onclick = function() {
+          popup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == popup) {
+                popup.style.display = "none";
+          }
+}
+    </script>
+</body>
+
+</html>

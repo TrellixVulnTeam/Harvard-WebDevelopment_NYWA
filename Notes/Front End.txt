@@ -1,1 +1,163 @@
 Front End
+
+
+<<<Single Page Application>>>
+
+	<script>
+
+	            document.addEventListener('DOMContentLoaded', () => {
+
+	                // Start by loading first page.
+	                load_page('first');
+
+	                // Set links up to load new pages.
+	                document.querySelectorAll('.nav-link').forEach(link => {
+	                    link.onclick = () => {
+	                        load_page(link.dataset.page);
+	                        return false;
+	                    };
+	                });
+	            });
+
+	            // Renders contents of new page in main view.
+	            function load_page(name) {
+	                const request = new XMLHttpRequest(); //get the information from flask server
+	                request.open('GET', `/${name}`);
+	                request.onload = () => {
+	                    const response = request.responseText;
+	                    document.querySelector('#body').innerHTML = response;
+	                }; //load the function when the request is done
+	                request.send();
+	            }
+
+	        </script>
+
+
+
+
+
+
+<<<Infinete scroll>>>
+- dynamically generate new sets of posts using javascript.
+
+
+
+Add button to hide post.
+        const hide = document.createElement('button');
+        hide.className = 'hide';
+        hide.innerHTML = 'Hide';
+        post.append(hide);
+
+        // When hide button is clicked, remove post.
+        hide.onclick = function() {
+            this.parentElement.remove();
+        };
+
+
+
+
+<<<javascript template>>>
+-handlebar
+
+<<<CSS Animation>>>
+-animating elements on webpage
+
+e.g hiding
+	@keyframes hide {
+                0% {
+                    opacity: 1;
+                    height: 100%;
+                    line-height: 100%;
+                    padding: 20px;
+                    margin-bottom: 10px;
+                }
+                75% {
+                    opacity: 0;
+                    height: 100%;
+                    line-height: 100%;
+                    padding: 20px;
+                    margin-bottom: 10px;
+                }
+                100% {
+                    opacity: 0;
+                    height: 0px;
+                    line-height: 0px;
+                    padding: 0px;
+                    margin-bottom: 0px;
+                }
+            }
+
+
+animation-iteration-count: 
+	how many times the animation runs.
+
+
+drawing vector graphics using d3
+-define what is it you want and build them out into shapes and sizes
+
+e.g drawing circle:
+	 <body>
+        <svg id="svg" style="width:100%; height:800px"/>
+    </body>
+    <script>
+
+        const svg = d3.select('#svg');
+
+        const c = svg.append('circle')
+                     .attr('cx', 200)
+                     .attr('cy', 200)
+                     .attr('r', 50)
+                     .style('fill', 'blue');
+
+        c.transition()
+         .duration(1000)
+         .attr('cx', 500)
+         .attr('cy', 500)
+         .style('fill', 'red');
+
+    </script>
+
+e.g changing colors on click:
+	red.on('click', () => {
+            red.style('fill', 'red');
+            yellow.style('fill', 'grey');
+            green.style('fill', 'grey');
+        });
+
+        yellow.on('click', () => {
+            red.style('fill', 'grey');
+            yellow.style('fill', 'yellow');
+            green.style('fill', 'grey');
+        });
+
+        green.on('click', () => {
+            red.style('fill', 'grey');
+            yellow.style('fill', 'grey');
+            green.style('fill', 'green');
+        });
+
+
+-
+
+
+
+<<<html5 history API>>>
+-to create url change without needing to reload the page
+
+	
+-Push State: add url to the stack
+e.g
+	history.pushState(null, name, name);
+
+	history.pushState({'title': name, 'text': response}, name, name);
+                };
+	
+
+
+-onpopState: back(popping from the stack)
+e.g
+	window.onpopstate = e => {
+                const data = e.state;
+                document.title = data.title;
+                document.querySelector('#body').innerHTML = data.text;
+            };

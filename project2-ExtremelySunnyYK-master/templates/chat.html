@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block title %}Chat{% endblock %}
+
+
+{% block body %}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!--chat script-->
+<script type="text/javascript">
+
+<!-- send a message to server when user is connected. socket.on->listening to certain event-->
+$(document).ready(function() {
+
+<!-- create a socket object that connects with local server -->
+	var socket = io.connect('http://' + document.domain + ':' + location.port);
+	var user_id = "{{ session['user'] }}";
+
+<!-- socket.on->listening to certain event. On connect -> send a message to server -->
+	socket.on('connect',function(){
+	socket.emit('message',user_id+ ' has connected');
+	});
+
+<!--	json msg that gets send to html page-->
+	socket.on('my response', function(msg) {
+		$( 'div.message_holder' ).append( '<div><b style="color: #000">'+msg.username+'</b> ' +msg.message+'</div>');
+		console.log('Received message ' + msg);
+	});
+<!-- message that is sent to server-->
+	var form = $( '#text_form' ).on( 'submit', function( e ) {
+	    e.preventDefault()
+		socket.send($('#myMessage').val());
+		let user_input = $('#myMessage').val();
+		socket.emit( 'my event', {
+		username : user_id,
+		message : user_input
+		});
+<!--	clear the message	-->
+		$('#myMessage').val('').focus()
+	});
+});
+</script>
+<style>
+    h2 {text-align:center;}
+</style>
+
+
+
+<div>
+    <h2>Welcome to {{ channel_id }} </h2>
+    <div class="message_holder"></div>
+    <form id="text_form">
+      <input type="text" class="message" id="myMessage" placeholder="Messages"/>
+      <input type="submit" value="send" id="sendbutton"/>
+   </form>
+</div>
+
+{% endblock %}

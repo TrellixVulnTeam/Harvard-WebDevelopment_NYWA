@@ -1,0 +1,18 @@
+FLASK SOCKET
+
+
+<<<Javascript Operators>>>
+
+socket.on()
+- event listener
+
+socket.send()
+- send object to server
+
+
+<<<Python Flask Operators>>>
+To receive WebSocket messages from the client, the application defines event handlers using the socketio.on decorator and it can send reply messages to the connected client using the send() and emit() functions.
+	@socketio.on('my event')
+	def handle_my_custom_event(json, methods=['GET', 'POST']):
+    print('received my event: '+ str(json))
+    socketio.emit('my response', json, callback=messageReceived)

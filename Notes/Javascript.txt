@@ -96,7 +96,7 @@ setInterval(function,milliseconds)
 
 Local Storage(to store information on local computer)
 -localStorage.getItem()
--localStorage.setItem()
+-localStorage.setItem('key','value')
 
 e.g
 if (!localStorage.getItem('counter'))
