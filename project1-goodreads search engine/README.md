@@ -3,7 +3,7 @@
 Web Programming with Python and JavaScript
 
 
-##Book Review Website: https://book-reviews-cs50-project1.herokuapp.com/
+## Book Review Website: https://book-reviews-cs50-project1.herokuapp.com/
 
 GoodReads API is used to pull in ratings from a broader audience.  
 
@@ -26,13 +26,16 @@ GoodReads API is used to pull in ratings from a broader audience.
 ## :gear: Setup your own
 
 Install all dependencies
-"""
+
+```
 $ pip install -r requirements.txt
-"""
+```
+
 
 Using the Webapp (for mac,use export instead of set)
-"""
-cd C:\Users\admin\Documents\GitHub\project1-ExtremelySunnyYK
+
+```
+cd <your project destination>
 
 set FLASK_APP=application.py
 
@@ -44,4 +47,6 @@ set GOODREADS_KEY = yJoznQhIn56YwlQodqQ # More info: https://www.goodreads.com/a
 
 python -m flask run
 
-"""
+```
+
+Have fun!
